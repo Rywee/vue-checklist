@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Learn Vue</title>
+</head>
+
+<body>
+
+	<div class="" id="root">
+	<h1>Riley's Checklist App</h1>
+	<h2>Add Item</h2>
+
+	<p>Name:</p>
+	<input v-model="input">
+	<button v-on:click="newTask">Add Task</button>
+
+	<h2>List</h2>
+	<ul>
+		<li v-for="item in items">
+			<p v-bind:class="{ checked: item.completed }"> {{ item.name }}</p>
+			<button v-on:click="item.completed = true">&#10003</button>
+		</li>
+	</ul>
+	</div>
+</body>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+<script>
+
+new Vue({
+	el: '#root',
+	data: {
+		input: '',
+		items: [
+			{name: 'test', completed: false}
+		]
+	},
+	methods: {
+		newTask: function () {
+      this.items.push({name: this.input, completed: false});
+			this.input = ''
+    }
+	},
+	components: {
+
+	}
+})
+</script>
+
+<style>
+	p {
+		display: inline;
+	}
+	.checked {
+		text-decoration: line-through;
+	}
+</style>
+</html>
